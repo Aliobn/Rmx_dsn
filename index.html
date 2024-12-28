@@ -4,215 +4,265 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>معرض أعمالي</title>
-    <link href="https://fonts.googleapis.com/css2?family=The+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* قاعدة عامة */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body, html {
-            height: 100%;
-            width: 100%;
-            font-family: 'The Sans', sans-serif;
+        :root {
+            --main-color: #222;
+            --accent-color: #ffc107;
+            --background-color: #f4f4f4;
+            --light-color: #ffffff;
+            --border-radius: 10px;
         }
 
-        /* الخلفية */
-        .background {
-            position: fixed;
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--background-color);
+            color: var(--main-color);
+            line-height: 1.6;
+        }
+
+        /* الشريط العلوي */
+        .navbar {
+            background-color: var(--main-color);
+            color: var(--light-color);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://a.top4top.io/p_3284u2ecy0.png'); /* رابط الخلفية */
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .logo img {
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .navbar .menu {
+            display: flex;
+            gap: 15px;
+        }
+
+        .navbar .menu a {
+            text-decoration: none;
+            color: var(--light-color);
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar .menu a:hover {
+            color: var(--accent-color);
+        }
+
+        /* العنوان الرئيسي */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background-image: url('https://a.top4top.io/p_3284u2ecy0.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            z-index: -1;
-            -webkit-background-size: cover; /* لضمان التوافق مع متصفح Safari */
-            -moz-background-size: cover; /* لضمان التوافق مع متصفح Firefox */
+            color: var(--light-color);
         }
 
-        .content {
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        /* معرض الصور */
+        .gallery {
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            display: block;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.7);
+        }
+
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--light-color);
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* نموذج التواصل */
+        .contact {
+            background-color: var(--light-color);
+            padding: 40px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 40px auto;
+        }
+
+        .contact h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .contact form {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* جعل المحتوى في منتصف الصفحة */
-            text-align: center;
-            padding: 0 20px;
+            gap: 15px;
         }
 
-        .logo-container {
-            width: 150px;
-            height: 150px;
-            background-color: #fff;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        .contact input, .contact textarea {
+            padding: 10px;
+            border: 1px solid var(--main-color);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
         }
 
-        .logo-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* لضمان تناسق الصورة في الدائرة */
-        }
-
-        .name {
-            font-size: 28px;
+        .contact button {
+            padding: 10px;
+            border: none;
+            background-color: var(--accent-color);
+            color: var(--light-color);
+            font-size: 1rem;
             font-weight: bold;
-            color: #000;
-            margin-top: 15px;
-            letter-spacing: 3px;
-        }
-
-        .description {
-            font-size: 16px;
-            color: #333;
-            margin-top: 10px;
-            max-width: 80%;
-        }
-
-        .social-icons {
-            margin-top: 20px;
-        }
-
-        .social-icons a {
-            margin: 0 15px;
-            text-decoration: none; /* إزالة التسطير تحت الأيقونة */
-        }
-
-        .social-icons img {
-            width: 40px;
-            height: 40px;
-            transition: transform 0.3s ease;
-            object-fit: contain; /* لضمان تناسق الأيقونات */
-        }
-
-        .social-icons img:hover {
-            transform: scale(1.1);
-        }
-
-        .portfolio-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 30px;
-        }
-
-        .oval-link {
-            display: inline-block;
-            padding: 20px 50px;
-            background-color: #fff;
-            border-radius: 50px;
-            border: 2px solid #000;
+            border-radius: var(--border-radius);
             cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .contact button:hover {
+            background-color: #e0a800;
+        }
+
+        /* الفوتر */
+        footer {
+            background-color: var(--main-color);
+            color: var(--light-color);
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            padding: 10px;
             margin-top: 20px;
+        }
+
+        footer a {
+            color: var(--accent-color);
             text-decoration: none;
         }
 
-        .oval-link .portfolio-text {
-            font-size: 24px;
-            font-weight: bold;
-            color: #000;
-        }
-
-        /* الاستجابة للأجهزة المتوسطة */
-        @media (max-width: 768px) {
-            .logo-container {
-                width: 120px;
-                height: 120px;
-            }
-
-            .name {
-                font-size: 24px;
-                letter-spacing: 2px;
-            }
-
-            .description {
-                font-size: 14px;
-            }
-
-            .social-icons img {
-                width: 35px;
-                height: 35px;
-            }
-
-            .portfolio-container .portfolio-text {
-                font-size: 20px;
-            }
-        }
-
-        /* الاستجابة للأجهزة الصغيرة */
-        @media (max-width: 480px) {
-            .content {
-                height: auto;
-                padding-top: 30%;
-            }
-
-            .name {
-                font-size: 20px;
-            }
-
-            .description {
-                font-size: 12px;
-            }
-
-            .social-icons img {
-                width: 30px;
-                height: 30px;
-            }
-
-            .portfolio-container {
-                flex-direction: column;
-            }
-
-            .portfolio-container .portfolio-text {
-                font-size: 18px;
-            }
-
-            .portfolio-container .oval-link {
-                padding: 8px 30px;
-            }
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="background"></div> <!-- الخلفية -->
-    <div class="content">
-        <!-- الدائرة مع الشعار -->
-        <div class="logo-container">
-            <img src="https://j.top4top.io/p_3284s28s50.jpg" alt="شعار"> <!-- شعارك -->
-        </div>
-        <!-- الاسم -->
-        <div class="name">RMX_DSN</div>
-        <!-- الوصف -->
-        <div class="description">
-            مرحبًا بكم في معرض أعمالي، حيث تجدون أفضل التصاميم المبدعة التي أتممتها في مجال الجرافيك.
-        </div>
-        <!-- أيقونات التواصل الاجتماعي -->
-        <div class="social-icons">
-            <a href="https://www.instagram.com/rmx_dzn?igsh=OGQ5ZDc2ODk2ZA==" target="_blank">
-                <img src="https://c.top4top.io/p_32759jen20.png" alt="إنستجرام">
-            </a>
-            <a href="https://wa.me/966548223192" target="_blank">
-                <img src="https://h.top4top.io/p_3271w4xxr2.png" alt="واتساب">
-            </a>
-            <a href="mailto:aliibrahimobn@gmail.com" target="_blank">
-                <img src="https://i.top4top.io/p_3271z5xqr3.png" alt="بريد إلكتروني">
-            </a>
-        </div>
 
-        <!-- رابط معرض الأعمال مع الشكل المستطيل البيضاوي -->
-        <a href="https://aliobn.github.io/-/" class="oval-link">
-            <div class="portfolio-text">معرض أعمالي</div>
-        </a>
+    <!-- الشريط العلوي -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://j.top4top.io/p_3284s28s50.jpg" alt="شعار الموقع">
+            <span>RMX_DSN</span>
+        </div>
+        <div class="menu">
+            <a href="#gallery">معرض الأعمال</a>
+            <a href="#contact">تواصل معنا</a>
+        </div>
     </div>
+
+    <!-- العنوان الرئيسي -->
+    <div class="hero">
+        <h1>مرحبًا بكم في معرض أعمالي</h1>
+        <p>تصاميم مبتكرة وحصرية</p>
+    </div>
+
+    <!-- معرض الصور -->
+    <div id="gallery" class="gallery">
+        <div class="gallery-item">
+            <img src="https://a.top4top.io/p_3284mr2vq5.png" alt="تصميم 1">
+            <div class="caption">تصميم 1</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://b.top4top.io/p_3284udvme1.png" alt="تصميم 2">
+            <div class="caption">تصميم 2</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://c.top4top.io/p_3284s0dli2.png" alt="تصميم 3">
+            <div class="caption">تصميم 3</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://d.top4top.io/p_3284gj9is3.png" alt="تصميم 4">
+            <div class="caption">تصميم 4</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://e.top4top.io/p_3284ksg3g4.png" alt="تصميم 5">
+            <div class="caption">تصميم 5</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://f.top4top.io/p_3284uyijw5.png" alt="تصميم 6">
+            <div class="caption">تصميم 6</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://h.top4top.io/p_3284xjnxt7.png" alt="تصميم 7">
+            <div class="caption">تصميم 7</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://i.top4top.io/p_3284fcjfz8.png" alt="تصميم 8">
+            <div class="caption">تصميم 8</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://j.top4top.io/p_32845ga3e9.png" alt="تصميم 9">
+            <div class="caption">تصميم 9</div>
+        </div>
+    </div>
+
+    <!-- نموذج التواصل -->
+    <div id="contact" class="contact">
+        <h2>تواصل معنا</h2>
+        <form>
+            <input type="text" placeholder="الاسم">
+            <input type="email" placeholder="البريد الإلكتروني">
+            <textarea placeholder="رسالتك" rows="5"></textarea>
+            <button type="submit">إرسال</button>
+        </form>
+    </div>
+
+    <!-- الفوتر -->
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2024 | <a href="https://instagram.com/rmx_dzn">RMX_DSN</a></p>
+    </footer>
+
 </body>
-</html>
