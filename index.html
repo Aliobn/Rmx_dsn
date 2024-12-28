@@ -12,88 +12,43 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --main-color: #000000;
-            --background-color: #f7f7f7;
-            --top-bar-bg: rgba(0, 0, 0, 0.8);
-            --border-thickness: 1px;
-        }
-
         body, html {
             height: 100%;
             width: 100%;
             font-family: 'The Sans', sans-serif;
-            background-color: var(--background-color);
-            position: relative;
-            background-image: url('https://a.top4top.io/p_3284u2ecy0.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-color: transparent;
-            -webkit-user-select: none; /* تعطيل التحديد في متصفحات ويب الكروم */
-            -moz-user-select: none; /* تعطيل التحديد في فايرفوكس */
-            -ms-user-select: none; /* تعطيل التحديد في متصفح إيدج */
         }
 
-        .top-bar {
+        .background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: var(--top-bar-bg);
-            color: white;
-            padding: 8px 20px;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .top-bar .logo img {
-            height: 30px;
-            border-radius: 50%;
-        }
-
-        .social-icons {
-            display: flex;
-        }
-
-        .social-icons img {
-            width: 30px;
-            height: 30px;
-            margin: 0 10px;
-            transition: transform 0.3s ease;
-            filter: invert(1);
-        }
-
-        .social-icons img:hover {
-            transform: scale(1.2);
+            height: 100%;
+            background-image: url('https://a.top4top.io/p_3284u2ecy0.png'); /* تم تحديث رابط الخلفية هنا */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
         }
 
         .content {
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            height: 100vh; /* اجعل المحتوى في منتصف الشاشة */
             text-align: center;
-            padding-top: 150px;
-            padding-bottom: 40px;
-            z-index: 1;
         }
 
         .logo-container {
             width: 150px;
             height: 150px;
-            background-color: transparent;
+            background-color: #fff;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            margin-bottom: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
@@ -103,143 +58,155 @@
             object-fit: cover;
         }
 
-        .heading {
-            font-size: 32px;
+        .name {
+            font-size: 28px;
             font-weight: bold;
-            color: var(--main-color);
-            margin-bottom: 10px;
+            color: #000;
+            margin-top: 15px;
+            letter-spacing: 3px;
         }
 
-        .subheading {
-            font-size: 18px;
-            color: var(--main-color);
+        .description {
+            font-size: 16px;
+            color: #333;
+            margin-top: 10px;
+            max-width: 80%;
         }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 0;
-            margin-top: 40px;
+        .social-icons {
+            margin-top: 20px;
         }
 
-        .gallery img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border: var(--border-thickness) solid #000000;
-            transition: transform 0.3s ease, filter 0.3s ease;
-            cursor: pointer;
-            display: block;
+        .social-icons a {
+            margin: 0 15px;
+            text-decoration: none; /* إخفاء النص تحت الأيقونة */
         }
 
-        .gallery img:hover {
-            transform: scale(1.05);
-            filter: brightness(0.7);
+        .social-icons img {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+            object-fit: contain; /* ضمان أن الأيقونة تظهر بشكل مربع */
         }
 
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-        }
-
-        .lightbox .close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
-        }
-
-        .lightbox .close:hover {
+        .social-icons img:hover {
             transform: scale(1.1);
         }
 
+        .portfolio-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .oval-link {
+            display: inline-block;
+            padding: 20px 50px;
+            background-color: #fff;
+            border-radius: 50px;
+            border: 2px solid #000;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+            text-decoration: none;
+        }
+
+        .oval-link .portfolio-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .logo-container {
+                width: 120px;
+                height: 120px;
+            }
+
+            .name {
+                font-size: 24px;
+                letter-spacing: 2px;
+            }
+
+            .description {
+                font-size: 14px;
+            }
+
+            .social-icons img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .portfolio-container .portfolio-text {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content {
+                height: auto;
+                padding-top: 30%;
+            }
+
+            .name {
+                font-size: 20px;
+            }
+
+            .description {
+                font-size: 12px;
+            }
+
+            .social-icons img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .portfolio-container {
+                flex-direction: column;
+            }
+
+            .portfolio-container .portfolio-text {
+                font-size: 18px;
+            }
+
+            .portfolio-container .oval-link {
+                padding: 8px 30px;
+            }
+        }
     </style>
 </head>
 <body>
-
-    <div class="top-bar">
-        <div class="logo">
-            <img src="https://j.top4top.io/p_3284s28s50.jpg" alt="شعار الموقع">
+    <div class="background"></div> <!-- الخلفية -->
+    <div class="content">
+        <!-- الدائرة مع الشعار -->
+        <div class="logo-container">
+            <img src="https://j.top4top.io/p_3284s28s50.jpg" alt="شعار"> <!-- شعارك -->
         </div>
+        <!-- الاسم -->
+        <div class="name">KEY_DESIGN</div>
+        <!-- الوصف -->
+        <div class="description">
+            مرحبًا بكم في معرض أعمالي، حيث تجدون أفضل التصاميم المبدعة التي أتممتها في مجال الجرافيك.
+        </div>
+        <!-- أيقونات التواصل الاجتماعي -->
         <div class="social-icons">
             <a href="https://www.instagram.com/rmx_dzn?igsh=OGQ5ZDc2ODk2ZA==" target="_blank">
-                <img src="https://c.top4top.io/p_32759jen20.png" alt="إنستجرام">
+                <img src="https://c.top4top.io/p_32759jen20.png" alt="إنستجرام"> <!-- تم استبدال الصورة القديمة -->
             </a>
             <a href="https://wa.me/966548223192" target="_blank">
                 <img src="https://h.top4top.io/p_3271w4xxr2.png" alt="واتساب">
             </a>
-            <a href="mailto:aliibrahimobn@gmail.com" target="_blank">
+            <a href="mailto:keydesignam@gmail.com" target="_blank">
                 <img src="https://i.top4top.io/p_3271z5xqr3.png" alt="بريد إلكتروني">
             </a>
         </div>
+
+        <!-- رابط معرض الأعمال مع الشكل المستطيل البيضاوي -->
+        <a href="https://keydesign1.github.io/key_design_a3mal/" class="oval-link"> <!-- رابط المعرض الجديد -->
+            <div class="portfolio-text">معرض أعمالي</div>
+        </a>
     </div>
-
-    <div class="content">
-        <div class="logo-container">
-            <img src="https://j.top4top.io/p_3284s28s50.jpg" alt="شعار الموقع">
-        </div>
-        <div class="heading">RMX_DSN</div>
-        <div class="subheading">هنا سترون بعض التصاميم الخاصة بي</div>
-    </div>
-
-    <div class="gallery">
-        <img src="https://a.top4top.io/p_3284mr2vq5.png" alt="تصميم 1" onclick="openLightbox(this)">
-        <img src="https://b.top4top.io/p_3284udvme1.png" alt="تصميم 2" onclick="openLightbox(this)">
-        <img src="https://c.top4top.io/p_3284s0dli2.png" alt="تصميم 3" onclick="openLightbox(this)">
-        <img src="https://d.top4top.io/p_3284gj9is3.png" alt="تصميم 4" onclick="openLightbox(this)">
-        <img src="https://e.top4top.io/p_3284ksg3g4.png" alt="تصميم 5" onclick="openLightbox(this)">
-        <img src="https://f.top4top.io/p_3284uyijw5.png" alt="تصميم 6" onclick="openLightbox(this)">
-        <img src="https://h.top4top.io/p_3284xjnxt7.png" alt="تصميم 7" onclick="openLightbox(this)">
-        <img src="https://i.top4top.io/p_3284fcjfz8.png" alt="تصميم 8" onclick="openLightbox(this)">
-        <img src="https://j.top4top.io/p_32845ga3e9.png" alt="تصميم 9" onclick="openLightbox(this)">
-        <img src="https://h.top4top.io/p_3284s9wid0.png" alt="تصميم 10" onclick="openLightbox(this)">
-        <img src="https://i.top4top.io/p_32847c0nv1.png" alt="تصميم 11" onclick="openLightbox(this)">
-        <img src="https://j.top4top.io/p_328476k8a2.png" alt="تصميم 12" onclick="openLightbox(this)">
-        <img src="https://d.top4top.io/p_32848wqtl0.png" alt="تصميم 13" onclick="openLightbox(this)">
-        <img src="https://l.top4top.io/p_3284cj7wh4.png" alt="تصميم 14" onclick="openLightbox(this)">
-        <img src="https://a.top4top.io/p_32845hdoq0.png" alt="تصميم 15" onclick="openLightbox(this)">
-    
-    </div>
-
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="close">&times;</span>
-        <img id="lightboxImage" src="" alt="صورة مكبرة">
-    </div>
-
-    <script>
-        function openLightbox(image) {
-            var lightbox = document.getElementById('lightbox');
-            var lightboxImage = document.getElementById('lightboxImage');
-            lightboxImage.src = image.src;
-            lightbox.style.display = 'flex';
-        }
-
-        function closeLightbox() {
-            var lightbox = document.getElementById('lightbox');
-            lightbox.style.display = 'none';
-        }
-
-        // منع النقر بالزر الأيمن
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-    </script>
-
 </body>
 </html>
